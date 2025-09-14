@@ -5,3 +5,4 @@ Flask-WTF
 Flask-Mail
 Flask-Login
 email-validator
+gunicorn
