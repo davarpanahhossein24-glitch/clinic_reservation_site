@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}تأیید رزرو{% endblock %}
+{% block extra_css %}
+<style>
+    .navbar {
+        background: linear-gradient(135deg, #6a11cb, #2575fc) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border-bottom: none;
+        transition: all 0.3s ease;
+    }
+    .navbar a {
+        color: #fff !important;
+    }
+    .navbar a:hover {
+        color: #ffeb3b !important;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<div class="card shadow-lg border-0 rounded-3 text-center p-4">
+    <h3 class="text-success mb-3">رزرو شما با موفقیت ثبت شد ✅</h3>
+    <p><strong>نام:</strong> {{ reservation.name }}</p>
+    <p><strong>خدمت:</strong> {{ reservation.service }}</p>
+    <p><strong>تاریخ:</strong> {{ reservation.date }}</p>
+    <p><strong>ساعت:</strong> {{ reservation.time }}</p>
+    <a href="{{ url_for('public.index') }}" class="btn btn-primary mt-3">بازگشت به صفحه اصلی</a>
+</div>
+{% endblock %}

@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+
+{% block title %}رزرو نوبت | کلینیک{% endblock %}
+
+{% block content %}
+{% block extra_css %}
+<style>
+    .navbar {
+        background: linear-gradient(135deg, #6a11cb, #2575fc) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border-bottom: none;
+        transition: all 0.3s ease;
+    }
+    .navbar a {
+        color: #fff !important;
+    }
+    .navbar a:hover {
+        color: #ffeb3b !important;
+    }
+</style>
+{% endblock %}
+
+<style>
+  /* فرم کلی */
+  .reservation-wrapper {
+    width: 90%;       /* عرض متغیر برای ریسپانسیو */
+    max-width: 420px; /* حداکثر عرض روی دسکتاپ */
+    margin: 20px auto;
+    padding: 25px 20px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+  }
+
+  .reservation-wrapper h2 {
+    text-align: center;
+    color: #4a00e0;
+    font-weight: 900;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+  }
+
+  /* فیلدها */
+  .form-control,
+  .form-select {
+    width: 100%;
+    height: 50px;
+    padding: 0.6rem 0.85rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease-in-out;
+    box-shadow: none;
+    box-sizing: border-box;
+  }
+
+  .form-control:focus,
+  .form-select:focus {
+    border-color: #6610f2;
+    box-shadow: 0 0 0 4px rgba(102, 16, 242, 0.15);
+  }
+
+  /* فاصله بین فیلدها بیشتر شد */
+  .form-floating {
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  /* استایل برچسب‌ها داخل فیلد */
+  .form-floating > label {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.85rem;
+    color: #777;
+    transition: all 0.25s ease-in-out;
+    pointer-events: none;
+    font-size: 0.9rem;
+    background-color: transparent;
+    padding: 0 6px;
+    border-radius: 6px;
+  }
+
+  /* وقتی فیلد فوکوس شد یا مقدار دارد */
+  .form-control:focus ~ label,
+  .form-control:not(:placeholder-shown) ~ label,
+  .form-select:focus ~ label,
+  .form-select:not([value=""]) ~ label {
+    top: -1.1rem;
+    right: 0.65rem;
+    background-color: #fff;
+    color: #6610f2;
+    font-size: 0.78rem;
+    font-weight: bold;
+    box-shadow: 0 0 0 3px #fff;
+  }
+
+  /* دکمه رزرو */
+  .reservation-wrapper button {
+    font-weight: bold;
+    font-size: 1.05rem;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+  }
+
+  .reservation-wrapper button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
+  }
+
+  /* ریسپانسیو */
+  @media (max-width: 768px) {
+    .reservation-wrapper {
+      width: 95%;
+      padding: 20px 15px;
+    }
+
+    .reservation-wrapper h2 {
+      font-size: 1.2rem;
+    }
+
+    .form-control,
+    .form-select {
+      font-size: 0.9rem;
+      height: 45px;
+      padding: 0.5rem 0.75rem;
+    }
+
+    .form-floating {
+      margin-bottom: 22px; /* فاصله مناسب روی موبایل */
+    }
+
+    .form-floating > label {
+      font-size: 0.85rem;
+    }
+
+    .form-control:focus ~ label,
+    .form-control:not(:placeholder-shown) ~ label,
+    .form-select:focus ~ label,
+    .form-select:not([value=""]) ~ label {
+      font-size: 0.72rem;
+    }
+
+    .reservation-wrapper button {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  }
+
+
+#email:focus ~ label,
+#email:not(:placeholder-shown) ~ label {
+  top: -0.7rem;
+  background-color: #fff;
+  padding: 0 4px;
+  line-height: normal;
+  height: auto;
+  font-size: 0.8rem;
+}
+
+</style>
+
+<div class="reservation-wrapper">
+  <h2>رزرو نوبت</h2>
+
+  <form method="POST" novalidate id="reservationForm">
+    {{ form.hidden_tag() }}
+
+    <div class="form-floating">
+      {{ form.name(class="form-control", id="name", placeholder=" ") }}
+      <label for="name">نام کامل شما</label>
+      {% for error in form.name.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-floating">
+      {{ form.phone(class="form-control", id="phone", placeholder=" ") }}
+      <label for="phone">شماره تماس</label>
+      {% for error in form.phone.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-floating">
+      {{ form.email(class="form-control", id="email", placeholder=" ") }}
+      <label for="email">ایمیل</label>
+      {% for error in form.email.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-floating">
+      {{ form.service(class="form-select", id="service", placeholder=" ") }}
+      <label for="service">انتخاب خدمت</label>
+      {% for error in form.service.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-floating">
+      {{ form.date(class="form-control", id="date", placeholder=" ", min=now.strftime('%Y-%m-%d')) }}
+      <label for="date">تاریخ</label>
+      {% for error in form.date.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="form-floating">
+      {{ form.time(class="form-select", id="time", placeholder=" ") }}
+      <label for="time">ساعت</label>
+      {% for error in form.time.errors %}
+        <div class="text-danger small">{{ error }}</div>
+      {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-success">رزرو کن</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // جلوگیری از انتخاب تاریخ گذشته
+  document.getElementById('reservationForm').addEventListener('submit', function(event) {
+    const dateInput = this.querySelector('input[name="date"]');
+    const selectedDate = new Date(dateInput.value);
+    const today = new Date();
+    today.setHours(0,0,0,0);
+
+    if (selectedDate < today) {
+      alert('لطفا یک تاریخ معتبر انتخاب کنید (امروز یا بعد از امروز).');
+      event.preventDefault();
+    }
+  });
+</script>
+{% endblock %}
