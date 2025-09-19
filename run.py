@@ -1,4 +1,4 @@
-from clinic_reservation.app import create_app, db
+from app import create_app, db
 from flask_migrate import Migrate
 from flask_migrate import upgrade
 
