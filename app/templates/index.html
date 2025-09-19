@@ -11,15 +11,18 @@
             font-family: "Vazirmatn", sans-serif;
             color: #444;
         }
+
         .navbar-brand {
             font-weight: 900;
             font-size: 1.3rem;
             letter-spacing: 0.05em;
         }
+
         nav.navbar {
             background: linear-gradient(90deg, #4a00e0, #8e2de2);
             box-shadow: 0 4px 10px rgba(72, 38, 132, 0.3);
         }
+
         .hero {
             background: linear-gradient(135deg, #007bff, #6610f2);
             color: white;
@@ -28,29 +31,72 @@
             border-radius: 0 0 30px 30px;
             box-shadow: 0 6px 25px rgba(102, 16, 242, 0.5);
         }
+
         .hero h1 {
             font-size: 3rem;
             font-weight: 900;
             letter-spacing: 0.03em;
             margin-bottom: 15px;
         }
+
         .hero p {
             font-size: 1.25rem;
             font-weight: 500;
             margin-bottom: 25px;
             opacity: 0.9;
         }
+
+        /* دکمه رزرو نوبت شیک */
         .btn-warning {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
             font-weight: 700;
-            padding: 14px 28px;
-            border-radius: 30px;
-            box-shadow: 0 6px 15px rgba(255, 193, 7, 0.5);
-            transition: all 0.3s ease;
+            border-radius: 50px;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 30px rgba(255, 126, 95, 0.5);
+            transition: all 0.4s ease;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-warning::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 10%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
+            border-radius: 50%;
+        }
+        .btn-warning:hover::after {
+            transform: scale(1);
         }
         .btn-warning:hover {
-            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.7);
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(255, 126, 95, 0.7);
         }
+
+        /* دکمه ورود ادمین شیک */
+        .btn-admin-login {
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            color: white;
+            font-weight: 700;
+            padding: 14px 30px;
+            border-radius: 50px;
+            box-shadow: 0 6px 20px rgba(67, 206, 162, 0.5);
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .btn-admin-login:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(67, 206, 162, 0.7);
+            background: linear-gradient(135deg, #185a9d, #43cea2);
+        }
+
         .service-card {
             border-radius: 20px;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
@@ -77,20 +123,7 @@
             font-size: 1rem;
             flex-grow: 1;
         }
-        .service-card .btn-primary {
-            background: #6610f2;
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
-            padding: 10px 20px;
-            align-self: flex-start;
-            box-shadow: 0 4px 15px rgba(102, 16, 242, 0.4);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .service-card .btn-primary:hover {
-            background: #4a00e0;
-            transform: translateY(-2px);
-        }
+
         footer {
             margin-top: 50px;
             background-color: #222;
@@ -100,74 +133,14 @@
             font-size: 0.9rem;
             letter-spacing: 0.05em;
         }
-        /* Responsive typography */
+
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .service-card h5 {
-                font-size: 1.1rem;
-            }
-            .service-card p {
-                font-size: 0.9rem;
-            }
-            .service-card .btn-primary {
-                padding: 8px 16px;
-                font-size: 0.9rem;
-            }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .service-card h5 { font-size: 1.1rem; }
+            .service-card p { font-size: 0.9rem; }
+            .btn-warning, .btn-admin-login { padding: 14px 28px; font-size: 1rem; }
         }
-
-
-        .btn-admin-login {
-    background-color: #28a745;
-    color: white;
-    font-weight: 700;
-    padding: 14px 28px;
-    border-radius: 30px;
-    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.5);
-    transition: all 0.3s ease;
-    border: none;
-    display: inline-block;
-    text-align: center;
-}
-
-.btn-admin-login:hover {
-    background-color: #218838;
-    box-shadow: 0 8px 20px rgba(33, 136, 56, 0.7);
-    transform: translateY(-3px);
-}
-
-
-        .btn-primary.btn-lg {
-    background: #6610f2;
-    border: none;
-    border-radius: 30px;
-    font-weight: 700;
-    padding: 14px 30px;
-    box-shadow: 0 6px 20px rgba(102, 16, 242, 0.5);
-    transition: all 0.3s ease;
-}
-.btn-primary.btn-lg:hover {
-    background: #4a00e0;
-    transform: translateY(-3px);
-}
-
-
-.doctor-image-section img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
-}
-
-.doctor-image-section img:hover {
-    transform: scale(1.03);
-}
-
     </style>
 </head>
 <body>
@@ -181,18 +154,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto gap-2">
-    <li class="nav-item">
-        <a href="{{ url_for('public.reserve') }}" class="btn btn-warning shadow-sm">رزرو نوبت</a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url_for('admin.login') }}" class="btn btn-admin-login">ورود ادمین</a>
-    </li>
-</ul>
-
+                <li class="nav-item">
+                    <a href="{{ url_for('admin.login') }}" class="btn btn-admin-login">ورود ادمین</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
-
 
 <!-- هدر اصلی -->
 <section class="hero">
@@ -202,13 +170,6 @@
         <a href="{{ url_for('public.reserve') }}" class="btn btn-warning btn-lg mt-3 shadow">رزرو سریع نوبت</a>
     </div>
 </section>
-
-<!--&lt;!&ndash; بخش تصویر پزشک &ndash;&gt;-->
-<!--<section class="doctor-image-section text-center my-5">-->
-<!--    <div class="container">-->
-<!--        <img src="{{ url_for('static', filename='images/doctor.jpg') }}" alt="پزشک" class="img-fluid rounded shadow">-->
-<!--    </div>-->
-<!--</section>-->
 
 <!-- بخش خدمات -->
 <div class="container mt-5">
@@ -228,15 +189,6 @@
         {% endfor %}
     </div>
 </div>
-
-
-<!-- دکمه اصلی رزرو در انتهای خدمات -->
-<div class="text-center mt-4">
-    <a href="{{ url_for('public.reserve') }}" class="btn btn-primary btn-lg shadow">
-        رزرو نوبت
-    </a>
-</div>
-
 
 <!-- فوتر -->
 <footer>

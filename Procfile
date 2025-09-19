@@ -1,1 +1,1 @@
-web: gunicorn clinic_reservation.run:appgit add .
+web: gunicorn app:app
